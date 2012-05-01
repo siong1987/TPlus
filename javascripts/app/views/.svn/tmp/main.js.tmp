@@ -1,0 +1,65 @@
+MainView = function(users, current_user) {
+  var users_list = _.map(users, function(user) {
+    var html_node = '<li><a href="#">' + user + '</a></li>';
+    return html_node;
+  }).join("");
+
+  var out = '';
+  ///*
+  out += '  <table width="100%"><tr><td align="center">';
+  out += '    <form class="form-horizontal">';
+  out += '      <fieldset>';
+  out += '        <legend>';
+  out += '          <table width="280">';
+  out += '            <tr>';
+  out += '              <td><h2>TPlus</h2></td>';
+  out += '              <td>';
+  out += '                <div class="btn-group" style="float:right;">';
+  out += '                  <button class="btn btn-info"><i class="icon-user icon-white"></i>' + current_user + '</button>';
+  out += '                  <button class="btn dropdown-toggle btn-info" data-toggle="dropdown">';
+  out += '                    <span class="caret"></span>';
+  out += '                  </button>';
+  out += '                  <ul class="dropdown-menu">';
+  out +=                      users_list;
+  out += '                    <li class="divider"></li>';
+  out += '                    <li><a href="#" id="sign-in">Add a new account</a></li>';
+  out += '                    <li><a href="#">Sign out</a></li>';
+  out += '                  </ul>';
+  out += '                </div>';
+  out += '              </td>';
+  out += '            </tr>';
+  out += '          </table>';
+  out += '        </legend>';
+  out += '        <div class="control-group">';
+  out += '          <div class="controls">';
+  out += '            <textarea id="tweet-area" class="input-xlarge" rows="4" placeholder="What\'s happening?"></textarea>';
+  out += '            <br>';
+  out += '            <table width="260"><tr><td align="right">';
+  out += '              <label id="counter-display">140</label>';
+  out += '            </td></tr></table>';
+  out += '          </div>';
+  out += '        </div>';
+  out += '          <table width="280">';
+  out += '            <tr>';
+  out += '              <td align="center">';
+  out += '        <button type="reset" id="getcurrenturl-btn" class="btn">Get Current URL</button> &nbsp;';
+  out += '        <button type="reset" class="btn">Clear</button> &nbsp;';
+  out += '        <button type="submit" id="tweet-btn" class="btn btn-primary">Tweet</button>';
+  out += '              </td>';
+  out += '            </tr>';
+  out += '            <tr>';
+  out += '              <td align="center">';
+  out += '        <button type="submit" id="save-btn" class="btn">Save</button> &nbsp;';
+  out += '        <button type="submit" id="restore-btn" class="btn">Restore</button> &nbsp;';
+  out += '              </td>';
+  out += '            </tr>';
+  out += '            <tr>';
+  out += '          </table>';
+  out += '      </fieldset>';
+  out += '    </form>';
+  out += '  </td></tr></table>';
+  ///*
+
+  return out;
+}
+

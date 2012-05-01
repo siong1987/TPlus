@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Jasmine Test Runner</title>
+  <link rel="stylesheet" type="text/css" href="javascripts/libs/jasmine/jasmine.css">
+  <script type="text/javascript" src="javascripts/libs/jasmine/jasmine.js"></script>
+  <script type="text/javascript" src="javascripts/libs/jasmine/jasmine-html.js"></script>
+
+  <!-- include libraries files here... -->
+  <script type="text/javascript" src="javascripts/libs/jquery.js"></script>
+  <script type="text/javascript" src="javascripts/libs/underscore.js"></script>
+  <script type="text/javascript" src="javascripts/libs/constants.js"></script>
+  <script type="text/javascript" src="javascripts/libs/twitter_lib.js"></script>
+  <script type="text/javascript" src="javascripts/libs/backbone.js"></script>
+
+  <!-- include source files here... -->
+  <script type="text/javascript" src="javascripts/libs/url_shortener.js"></script>
+  <script type="text/javascript" src="javascripts/libs/persistence.js"></script>
+  <script type="text/javascript" src="javascripts/background.js"></script>
+  <script type="text/javascript" src="javascripts/app/controllers/main.js"></script>
+
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="spec/url_shortener_spec.js"></script>
+  <script type="text/javascript" src="spec/main_controller_spec.js"></script>
+  <script type="text/javascript" src="spec/save_input_spec.js"></script>
+  <script type="text/javascript" src="spec/save_restore_id_spec.js"></script>
+  <script type="text/javascript" src="spec/value_wrapper_spec.js"></script>
+  <script type="text/javascript" src="spec/user_spec.js"></script>
+  <script type="text/javascript" src="spec/get_next_available_save_num_spec.js"></script>
+  <script type="text/javascript" src="spec/remove_save_from_num_order_spec.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+  jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+  jasmine.getEnv().execute();
+</script>
+
+</body>
+</html>

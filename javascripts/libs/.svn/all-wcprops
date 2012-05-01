@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/sp12-cs428/!svn/ver/3145/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs
+END
+backbone.js
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/sp12-cs428/!svn/ver/510/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/backbone.js
+END
+persistence.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/sp12-cs428/!svn/ver/3145/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/persistence.js
+END
+twitter_lib.js
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/sp12-cs428/!svn/ver/3145/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/twitter_lib.js
+END
+underscore.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/sp12-cs428/!svn/ver/510/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/underscore.js
+END
+url_shortener.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/sp12-cs428/!svn/ver/1580/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/url_shortener.js
+END
+constants.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/sp12-cs428/!svn/ver/2991/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/constants.js
+END
+oauth_authorizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/sp12-cs428/!svn/ver/2993/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/oauth_authorizer.js
+END
+sha1.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/sp12-cs428/!svn/ver/1897/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/sha1.js
+END
+bootstrap.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/sp12-cs428/!svn/ver/1924/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/bootstrap.js
+END
+jquery.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/sp12-cs428/!svn/ver/510/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/jquery.js
+END
+oauth.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/sp12-cs428/!svn/ver/1897/_projects/ChromeTwitterPlugin/TPlus/javascripts/libs/oauth.js
+END

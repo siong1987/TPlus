@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/sp12-cs428/!svn/ver/2870/_projects/ChromeTwitterPlugin/TPlus/spec
+END
+get_next_available_save_num_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/sp12-cs428/!svn/ver/2870/_projects/ChromeTwitterPlugin/TPlus/spec/get_next_available_save_num_spec.js
+END
+url_shortener_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/sp12-cs428/!svn/ver/1897/_projects/ChromeTwitterPlugin/TPlus/spec/url_shortener_spec.js
+END
+value_wrapper_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/sp12-cs428/!svn/ver/1904/_projects/ChromeTwitterPlugin/TPlus/spec/value_wrapper_spec.js
+END
+save_input_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/sp12-cs428/!svn/ver/1948/_projects/ChromeTwitterPlugin/TPlus/spec/save_input_spec.js
+END
+save_restore_id_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/sp12-cs428/!svn/ver/2364/_projects/ChromeTwitterPlugin/TPlus/spec/save_restore_id_spec.js
+END
+user_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/sp12-cs428/!svn/ver/2402/_projects/ChromeTwitterPlugin/TPlus/spec/user_spec.js
+END
+main_controller_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/sp12-cs428/!svn/ver/1897/_projects/ChromeTwitterPlugin/TPlus/spec/main_controller_spec.js
+END
+remove_save_from_num_order_spec.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/sp12-cs428/!svn/ver/2870/_projects/ChromeTwitterPlugin/TPlus/spec/remove_save_from_num_order_spec.js
+END

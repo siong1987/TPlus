@@ -1,0 +1,254 @@
+<<<<<<< .mine
+MainController = Backbone.View.extend({
+  events: {
+    "keydown #tweet-area": "characterCount",
+    "keyup #tweet-area": "characterCount",
+    "click #tweet-btn": "tweet",
+    "click #getcurrenturl-btn": "getCurrentUrl",
+    "click #sign-in": "signIn"
+  },
+
+  // Check the matched url pattern and return the new lengeth
+  //
+  // params:
+  //   input: input to be count
+  countLength: function(input) {
+    // Check the url pattern first
+    var pattern = /(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|]*(\.)[-A-Z0-9+&@#\/%=~_|!:,.;]+)/ig;
+    var matched_count = input.match(pattern);
+    var new_length = input.replace(pattern, "").length;
+
+    // if there is urls, then, count the url length as well.
+    if (matched_count !== null) {
+      // TODO: 20 should be as constant
+      new_length = new_length + (matched_count.length * 20);
+    }
+
+    return new_length;
+  },
+
+  // Count charters in the text area.
+  //
+  // events: keydown and keyup
+  characterCount: function(e) {
+    var target = $(e.currentTarget);
+    var inputStringLength = this.countLength(target.val());
+    var counter = $('#counter-display');
+
+    // TODO: 140 should be constant
+    var MAX_TWEET_LENGTH = 140;
+    var charactersLeft = MAX_TWEET_LENGTH;
+
+    if (inputStringLength > MAX_TWEET_LENGTH) {
+      counter.addClass('help-inline');
+    } else {
+      counter.removeClass('help-inline');
+    }
+
+    charactersLeft = MAX_TWEET_LENGTH - inputStringLength;
+    counter.html((charactersLeft));
+  },
+
+  // get the url of the current page
+  getCurrentUrl: function(e) {
+    var tweetarea = $('#tweet-area');
+    chrome.tabs.getSelected(null, function(tab) {
+      var myTabUrl = tab.url;
+      tweetarea.html(myTabUrl);
+    });
+  },
+
+  // tweet out the message
+  tweet: function() {
+    var tweetbox = $('#tweet-area');
+    var message = tweetbox.val();
+    tweetManager.tweet(message);
+
+    // Clear up the tweetbox for next tweet.
+    tweetbox.html("");
+  },
+
+  signIn: function() {
+    twitterBackend.startAuthentication();
+    window.close();
+  },
+
+  render: function() {
+    // Get the current list of usernames who are logged in.
+    var users = tweetManager.getUserList();
+    var current_user = tweetManager.getCurrentUser();
+
+    $(this.el).html(MainView(users, current_user));
+    $('body').html(this.el);
+  }
+});
+
+=======
+MainController = Backbone.View.extend({
+  events: {
+    "keydown #tweet-area": "characterCount",
+    "keyup #tweet-area": "characterCount",
+    "click #tweet-btn": "tweet",
+    "click #getcurrenturl-btn": "getCurrentUrl",
+    "click #sign-in": "signIn",
+	"click #save-btn": "save",
+	"click #restore-btn": "restore"
+  },
+
+
+  // Saves the input text in storage.
+  //
+  // params:
+  //   input: e, the event which prompted this function.
+  save: function(e){
+	  var tweetArea = $('#tweet-area');
+	  var value = tweetArea.val();
+	  this.saveInputTo('savedInput', value);
+  },
+  
+  // Restores the saved input text back to the textarea.
+  //
+  // params:
+  //   input: e, the event which prompted this function.
+  restore: function(e){
+	this.restoreInputFrom('savedInput');
+	
+  },
+  
+  
+  // Saves the value at the specified key in storage.
+  //
+  // params:
+  //   input: key, the key string to save to
+  //		  value, the value to save
+  saveInputTo: function(key, value){
+	  localStorage[key] = value;
+  },
+  
+  
+  // Restores into the textarea whatever value is saved at the key
+  //
+  // params:
+  //   input: key, the key from which to derive the restored text.
+  restoreInputFrom: function(key){  
+	var tweetArea = $('#tweet-area');
+	//restore the previous input in the textarea
+	var restoredInput = localStorage[key];
+	if(restoredInput) {
+		tweetArea.val(restoredInput);
+		//tweetArea.value = (restoredInput);
+	}
+	else {
+		tweetArea.val('');
+	}
+	this.determineCharCount(tweetArea);
+  },
+
+  //Determines the remaining number of characters the user is allowed
+  //in his tweet and displays that number. The max is 140 characters per Tweet.
+  //
+  //params:
+  //	input: element, the textarea whose characters are being counted.
+  determineCharCount: function(element){
+	//Get the current textarea's string, and get its length
+	//using the countLength() function, which considers URL lengths.
+	var tweet = element.val();
+    var inputStringLength = this.countLength(tweet);
+    var counter = $('#counter-display');  
+
+	// TODO: 140 should be constant
+    var MAX_TWEET_LENGTH = 140;
+    var charactersLeft = MAX_TWEET_LENGTH;
+	
+	//change color if above max length of tweet
+    if (inputStringLength > MAX_TWEET_LENGTH) {
+      counter.addClass('help-inline');
+    } else {
+      counter.removeClass('help-inline');
+    }
+	 
+	 //save input string to backup
+   	 if (inputStringLength >= 0) {
+		 this.saveInputTo('backupInput', tweet);
+	 }
+	
+	//Outputs the number of remaining characters to the interface
+    charactersLeft = MAX_TWEET_LENGTH - inputStringLength;
+    counter.html((charactersLeft));
+  },
+  
+  // Counts the number of remaining characters allowed in the text area.
+  // It is triggered by the event e.
+  //
+  // events: keydown and keyup
+  characterCount: function(e) {
+	  
+	  var target = $(e.currentTarget);
+	  this.determineCharCount( target );
+  },
+  
+  
+  // Check the matched url pattern and return the new lengeth
+  //
+  // params:
+  //   input: input to be count
+  countLength: function(input) {
+    // Check the url pattern first
+    var pattern = /(\b(https?):\/\/[-A-Z0-9+&@#\/%?=~_|]*(\.)[-A-Z0-9+&@#\/%=~_|!:,.;]+)/ig;
+    var matched_count = input.match(pattern);
+    var new_length = input.replace(pattern, "").length;
+
+    // if there is urls, then, count the url length as well.
+    if (matched_count !== null) {
+      // TODO: 20 should be as constant
+      new_length = new_length + (matched_count.length * 20);
+    }
+
+    return new_length;
+  },
+
+
+ // get the url of the current page
+  //
+  //events: click
+  getCurrentUrl: function(e) {
+    var tweetarea = $('#tweet-area');
+	var currentTweet = tweetarea.val();
+    chrome.tabs.getSelected(null, function(tab) {
+      var myTabUrl = tab.url;
+	  //now, fill tweetbox with the user's input, and append the URL
+      tweetarea.val( currentTweet + myTabUrl);
+	  
+    });
+	//redetermine the character counter
+	this.determineCharCount(tweetarea);
+  },
+
+  // tweet out the message
+  tweet: function() {
+    var tweetbox = $('#tweet-area');
+    var message = tweetbox.val();
+    tweetManager.tweet(message);
+
+    // Clear up the tweetbox for next tweet.
+    tweetbox.html("");
+  },
+
+  signIn: function() {
+    twitterBackend.startAuthentication();
+    window.close();
+  },
+
+  render: function() {
+    // Get the current list of usernames who are logged in.
+    var users = tweetManager.getUserList();
+
+    $(this.el).html(MainView(users));
+    $('body').html(this.el);
+	
+	//populate tweetbox with cached tweet
+	this.restoreInputFrom('backupInput');
+  }
+});
+
+>>>>>>> .r1948

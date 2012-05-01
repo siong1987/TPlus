@@ -1,0 +1,48 @@
+body {
+  min-width:357px;
+  overflow-x:hidden;
+}
+
+img {
+  margin:5px;
+  border:2px solid black;
+  vertical-align:middle;
+  width:75px;
+  height:75px;
+}
+
+.help-inline {
+  color: red;
+}
+
+.main_frame {
+  margin-left:auto; 
+  margin-right:auto;
+  margin-top:auto; 
+  margin-bottom:auto;
+  width:450px;
+  height:250px;
+}
+
+.tb_text_center {
+  text-align:center;
+}
+
+.tb_center_width {
+  margin-left:auto; 
+  margin-right:auto;
+  width:310px;
+}
+
+.tb_cell {
+  padding:2px;
+}
+
+.tb_center {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+.tb_right {
+  margin-left:auto;
+}

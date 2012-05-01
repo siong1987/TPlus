@@ -1,0 +1,126 @@
+var options = { 
+      consumerKey: 'YdTK9PTL1aZfNcUa57GD8w',
+      consumerSecret: 'JVCuvEuAyN9fKIHMWtK6foWa0jFpKKZkKupmvXYp50'};     
+var requestParams;
+oauth = OAuth(options);
+
+MainController = Backbone.View.extend({
+  events: {
+    "keydown #tweet-area": "characterCount",
+    "keyup #tweet-area": "characterCount",
+    "click #signin-btn": "signin",
+    "click #tweet-btn": "sendtweet",
+    "click #getcurrenturl-btn": "getCurrentUrl"
+  },
+
+  initialize: function() {
+    this.render();
+  },
+
+  //function that searches the text box for a url agfter it has been updated by user
+  detectUrl: function(input) {
+    var regex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+    var pos = -1;
+
+    pos = input.search(regex); //returns the starting index of the url, or -1 if none is found
+
+    return pos;
+  },
+
+  // count charters in the text area
+  // event: keydown and keyup
+  characterCount: function(e) {
+    var target = $(e.currentTarget);
+    var inputStringLength = target.val().length;
+    var counter = $('#counter-display');
+    var tweetButton = $('#tweet-btn');
+    var signinButton = $('#signin-btn');
+
+    var MAX_TWEET_LENGTH = 140;
+    var charactersLeft = MAX_TWEET_LENGTH;
+
+    if (inputStringLength > MAX_TWEET_LENGTH) {
+      counter.addClass('help-inline');
+    } else {
+      counter.removeClass('help-inline');
+    }
+
+  charactersLeft = MAX_TWEET_LENGTH - inputStringLength;
+
+  var result = this.detectUrl(target.val());
+
+  if(result !== -1)
+  {
+    charactersLeft = charactersLeft - 15;
+  }
+
+    counter.html((charactersLeft));
+  },
+
+  // redirect user to the twitter login page
+  signin: function(e) {
+
+    oauth.get('https://api.twitter.com/oauth/request_token',
+
+      function(data) {
+        requestParams = data.text;
+        chrome.tabs.create({
+          "url": 'https://api.twitter.com/oauth/authorize?'+data.text,
+          "selected": true});
+      },
+      function(data) {
+        console.log(data.text);
+      }
+    );
+
+  },
+
+  // get the access token and post a tweet
+  sendtweet: function(e) {
+
+    if ($('#pin').val()) {
+      oauth.get('https://twitter.com/oauth/access_token?oauth_verifier='+$('#pin').val()+'&'+requestParams,
+
+        function(data) {
+          var accessParams = {};
+          var qvars_tmp = data.text.split('&');
+          for (var i = 0; i < qvars_tmp.length; i++) {;
+            var y = qvars_tmp[i].split('=');
+            accessParams[y[0]] = decodeURIComponent(y[1]);
+          };
+
+          oauth.setAccessToken([accessParams.oauth_token, accessParams.oauth_token_secret]);
+          console.log(accessParams);
+          oauth.post('https://api.twitter.com/1/statuses/update.json',
+                        { 'status' : 'Hello, World!',
+                          'trim_user' : 'true' });
+        },
+
+        function(data) { 
+          console.log(data.text);
+        }
+      );
+
+     ;
+    }
+  },
+
+  // get the url of the current page
+  getCurrentUrl: function(e) {
+    var tweetarea = $('#tweet-area');
+    chrome.tabs.getSelected(null, function(tab) { 
+      var myTabUrl = tab.url; 
+      tweetarea.html(myTabUrl);
+    });
+  },
+
+  render: function() {
+    $(this.el).html(MainView());
+    $('body').html(this.el);
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  main_controller = new MainController();
+});
